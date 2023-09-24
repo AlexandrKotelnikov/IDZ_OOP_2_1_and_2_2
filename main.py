@@ -16,7 +16,7 @@ def extract_file():
                 })
             file.readline()
             recipes[name_of_the_dish] = layot
-        pprint(recipes, sort_dicts=False)
+        # pprint(recipes, sort_dicts=False)
         return recipes
 
 
@@ -27,7 +27,7 @@ def get_shop_list_by_dishes(dishes, person_count):
         if recipe in dishes:
             for ingredient in ingredients:
                 name = ingredient["ingredient_name"]
-                quantity = int(ingredient["quantity"]) * person_count
+                quantity = int(ingredient["quantity"]) * person_count * dishes.count(recipe)
                 pieces = ingredient["pieces"]
                 if name not in result.keys():
                     result[name] = {
@@ -38,4 +38,4 @@ def get_shop_list_by_dishes(dishes, person_count):
                     result[name]["quantity"] += quantity
     return result
 
-pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+pprint(get_shop_list_by_dishes(['Омлет', 'Омлет', 'Омлет'], 2))
